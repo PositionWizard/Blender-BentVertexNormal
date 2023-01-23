@@ -19,9 +19,16 @@ bl_info = {
     "blender": (3, 4, 0),
     "location": "View3D > Mesh > Normals",
     # "warning": "This addon is still in development.",
-    "category": "Mesh"
+    "category": "Mesh",
+    "doc_url": "https://github.com/PositionWizard/Blender-BentVertexNormal/",
+    "tracker_url": "https://github.com/PositionWizard/Blender-BentVertexNormal/issues"
     }
-    
+
+if "bpy" in locals():
+    import importlib
+    if "calc_bent_normal" in locals():
+        importlib.reload(calc_bent_normal)
+
 import bpy
 from .calc_bent_normal import BENTNORMAL_OT_calculate_normals
 
@@ -36,6 +43,3 @@ def register():
 def unregister():
     bpy.types.VIEW3D_MT_edit_mesh_normals.remove(menu_normals)
     bpy.utils.unregister_class(BENTNORMAL_OT_calculate_normals)
-
-if __name__ == "__main__":
-    register()
